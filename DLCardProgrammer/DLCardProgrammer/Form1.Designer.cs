@@ -97,6 +97,7 @@
             this.btnLoadProgram.TabIndex = 5;
             this.btnLoadProgram.Text = "Cargar programa";
             this.btnLoadProgram.UseVisualStyleBackColor = true;
+            this.btnLoadProgram.Click += new System.EventHandler(this.btnLoadProgram_Click);
             // 
             // btnViewCode
             // 

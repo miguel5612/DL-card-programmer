@@ -18,6 +18,7 @@ namespace DLCardProgrammer
     public partial class Form1 : Form
     {
         public string _programa = string.Empty;
+        public int __bytes = 0;
         SerialPort ArduinoPort = new SerialPort();
         public Form1()
         {
@@ -125,6 +126,51 @@ namespace DLCardProgrammer
             {
                 throw;
             }
+        }
+
+        private void btnLoadProgram_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog window = new OpenFileDialog();
+            string line = "", text = "";
+            if (window.ShowDialog() == DialogResult.OK)
+            {
+                string fileStr = "";
+                string location = window.FileName;
+                byte[] file = File.ReadAllBytes(location);
+                _programa = ByteArrayToString(file);
+                _programa = formatStr(_programa, 4, 8);
+                __bytes = _programa.Trim().Replace(" ", "").Replace("\r\n", "").Length;
+            }
+        }
+
+
+        public static string ByteArrayToString(byte[] ba)
+        {
+            StringBuilder hex = new StringBuilder(ba.Length * 2);
+            foreach (byte b in ba)
+                hex.AppendFormat("{0:x2}", b);
+            return hex.ToString();
+        }
+        public static string formatStr(String inputText, int chunkSize, int CRSize)
+        {
+            string rText = " ";
+            int counter = 0;
+            foreach (string s in Split(inputText, chunkSize).ToList())
+            {
+                counter++;
+                rText += " " + s;
+                if (counter >= CRSize)
+                {
+                    rText += "  \r\n ";
+                    counter = 0;
+                }
+            }
+            return rText;
+        }
+        static IEnumerable<string> Split(string str, int chunkSize)
+        {
+            return Enumerable.Range(0, str.Length / chunkSize)
+                .Select(i => str.Substring(i * chunkSize, chunkSize));
         }
     }
 }
