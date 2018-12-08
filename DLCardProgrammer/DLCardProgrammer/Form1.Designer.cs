@@ -76,7 +76,7 @@
             this.cmbPort.FormattingEnabled = true;
             this.cmbPort.Location = new System.Drawing.Point(150, 15);
             this.cmbPort.Name = "cmbPort";
-            this.cmbPort.Size = new System.Drawing.Size(121, 21);
+            this.cmbPort.Size = new System.Drawing.Size(139, 21);
             this.cmbPort.TabIndex = 3;
             // 
             // cmbBaudrate
@@ -84,14 +84,14 @@
             this.cmbBaudrate.FormattingEnabled = true;
             this.cmbBaudrate.Location = new System.Drawing.Point(150, 43);
             this.cmbBaudrate.Name = "cmbBaudrate";
-            this.cmbBaudrate.Size = new System.Drawing.Size(121, 21);
+            this.cmbBaudrate.Size = new System.Drawing.Size(139, 21);
             this.cmbBaudrate.TabIndex = 4;
             // 
             // btnLoadProgram
             // 
             this.btnLoadProgram.Location = new System.Drawing.Point(150, 70);
             this.btnLoadProgram.Name = "btnLoadProgram";
-            this.btnLoadProgram.Size = new System.Drawing.Size(121, 23);
+            this.btnLoadProgram.Size = new System.Drawing.Size(139, 23);
             this.btnLoadProgram.TabIndex = 5;
             this.btnLoadProgram.Text = "Cargar programa";
             this.btnLoadProgram.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             // 
             this.btnViewCode.Location = new System.Drawing.Point(150, 99);
             this.btnViewCode.Name = "btnViewCode";
-            this.btnViewCode.Size = new System.Drawing.Size(121, 23);
+            this.btnViewCode.Size = new System.Drawing.Size(139, 23);
             this.btnViewCode.TabIndex = 6;
             this.btnViewCode.Text = "Ver el codigo";
             this.btnViewCode.UseVisualStyleBackColor = true;
@@ -119,7 +119,7 @@
             this.cmbTypeProgram.FormattingEnabled = true;
             this.cmbTypeProgram.Location = new System.Drawing.Point(150, 128);
             this.cmbTypeProgram.Name = "cmbTypeProgram";
-            this.cmbTypeProgram.Size = new System.Drawing.Size(121, 21);
+            this.cmbTypeProgram.Size = new System.Drawing.Size(139, 21);
             this.cmbTypeProgram.TabIndex = 8;
             // 
             // label4
@@ -135,7 +135,7 @@
             // 
             this.btnProgram.Location = new System.Drawing.Point(150, 155);
             this.btnProgram.Name = "btnProgram";
-            this.btnProgram.Size = new System.Drawing.Size(121, 23);
+            this.btnProgram.Size = new System.Drawing.Size(139, 23);
             this.btnProgram.TabIndex = 10;
             this.btnProgram.Text = "Programar Tarjeta";
             this.btnProgram.UseVisualStyleBackColor = true;
