@@ -41,6 +41,8 @@
             this.btnProgram = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.btnUpdatePorts = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblPort
@@ -151,11 +153,31 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(311, 18);
+            this.txtName.Location = new System.Drawing.Point(313, 39);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(246, 20);
+            this.txtName.Size = new System.Drawing.Size(246, 134);
             this.txtName.TabIndex = 12;
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(313, 13);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(85, 23);
+            this.btnConnect.TabIndex = 13;
+            this.btnConnect.Text = "Conectar";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
+            // btnUpdatePorts
+            // 
+            this.btnUpdatePorts.Location = new System.Drawing.Point(404, 12);
+            this.btnUpdatePorts.Name = "btnUpdatePorts";
+            this.btnUpdatePorts.Size = new System.Drawing.Size(85, 23);
+            this.btnUpdatePorts.TabIndex = 14;
+            this.btnUpdatePorts.Text = "Actualizar";
+            this.btnUpdatePorts.UseVisualStyleBackColor = true;
+            this.btnUpdatePorts.Click += new System.EventHandler(this.btnUpdatePorts_Click);
             // 
             // Form1
             // 
@@ -163,6 +185,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(585, 205);
+            this.Controls.Add(this.btnUpdatePorts);
+            this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnProgram);
@@ -198,6 +222,8 @@
         private System.Windows.Forms.Button btnProgram;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Button btnUpdatePorts;
     }
 }
 

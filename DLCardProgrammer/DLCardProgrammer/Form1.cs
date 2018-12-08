@@ -80,5 +80,51 @@ namespace DLCardProgrammer
             if (countPorts == 0) cmbPort.Items.Add("COM3");
             cmbPort.SelectedIndex = 0;
         }
+
+        private void btnUpdatePorts_Click(object sender, EventArgs e)
+        {
+            //Al llamar a esta funcion se llena la lista de puertos:
+            pLoadSerialPorts();
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            btnConnect.Enabled = false;
+            try
+            {
+                if (btnConnect.Text == "Conectar")
+                {
+                    //Conectar 
+
+                    ArduinoPort.PortName = cmbPort.Text;
+                    ArduinoPort.BaudRate = Int32.Parse(cmbBaudrate.Text);
+                    ArduinoPort.DataBits = 8;
+                    ArduinoPort.Parity = Parity.None;
+                    ArduinoPort.StopBits = StopBits.One;
+                    ArduinoPort.Handshake = Handshake.None;
+                    try
+                    {
+                        ArduinoPort.Open();
+                        btnConnect.Text = "Desconectar";
+                        btnConnect.Enabled = true;
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+                else
+                {
+                    //Desconectar
+                    ArduinoPort.Close();
+                    btnConnect.Text = "Conectar";
+                    btnConnect.Enabled = true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
