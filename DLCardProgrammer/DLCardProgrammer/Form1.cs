@@ -26,11 +26,36 @@ namespace DLCardProgrammer
             pLoadSerialPorts();
             //Al llamar a esta funcion se carga la lista de velocidades:
             fillBaudRate();
+            //Al llamar a esta funcion se carga de forma automatica las formas de envio
+            pfillSendMode();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        private void pfillSendMode()
+        {
+
+            cmbTypeProgram.Items.Add("(HEX)Byte a Byte");
+            cmbTypeProgram.Items.Add("(HEX)2 Bytes a 2 Bytes)");
+            cmbTypeProgram.Items.Add("(HEX)4 Bytes a 4 Bytes");
+            cmbTypeProgram.Items.Add("(HEX)6 Bytes a 6 Bytes");
+            cmbTypeProgram.Items.Add("(HEX)8 Bytes a 8 Bytes");
+            cmbTypeProgram.Items.Add("(HEX)Line to Line (8-Bit)");
+            cmbTypeProgram.Items.Add("(HEX)Line to Line (16-Bit)");
+            cmbTypeProgram.Items.Add("(HEX)Line to Line (32-Bit)");
+
+            cmbTypeProgram.Items.Add("(DEC)Byte a Byte");
+            cmbTypeProgram.Items.Add("(DEC)2 Bytes a 2 Bytes)");
+            cmbTypeProgram.Items.Add("(DEC)4 Bytes a 4 Bytes");
+            cmbTypeProgram.Items.Add("(DEC)6 Bytes a 6 Bytes");
+            cmbTypeProgram.Items.Add("(DEC)8 Bytes a 8 Bytes");
+            cmbTypeProgram.Items.Add("(DEC)Line to Line (8-Bit)");
+            cmbTypeProgram.Items.Add("(DEC)Line to Line (16-Bit)");
+            cmbTypeProgram.Items.Add("(DEC)Line to Line (32-Bit)");
+
+            cmbTypeProgram.SelectedIndex = 0;
         }
         private void fillBaudRate()
         {
