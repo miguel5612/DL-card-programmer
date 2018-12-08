@@ -24,12 +24,24 @@ namespace DLCardProgrammer
             InitializeComponent();
             //Al llamar a esta funcion se llena la lista de puertos:
             pLoadSerialPorts();
-
+            //Al llamar a esta funcion se carga la lista de velocidades:
+            fillBaudRate();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        private void fillBaudRate()
+        {
+            cmbBaudrate.Items.Add("4800");
+            cmbBaudrate.Items.Add("9600");
+            cmbBaudrate.Items.Add("19200");
+            cmbBaudrate.Items.Add("38400");
+            cmbBaudrate.Items.Add("57600");
+            cmbBaudrate.Items.Add("115200");
+            cmbBaudrate.Items.Add("250000");
+            cmbBaudrate.SelectedIndex = 5;
         }
         private void pLoadSerialPorts()
         {
