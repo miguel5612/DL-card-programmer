@@ -161,6 +161,7 @@
             // 
             // txtName
             // 
+            this.txtName.Enabled = false;
             this.txtName.Location = new System.Drawing.Point(313, 70);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";

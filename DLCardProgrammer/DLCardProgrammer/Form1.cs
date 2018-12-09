@@ -20,6 +20,7 @@ namespace DLCardProgrammer
         public string _programa = string.Empty, program2Send;
         public string __mode = string.Empty;
         public int __bytes = 0;
+        public List<string> names = new List<string>();
         SerialPort ArduinoPort = new SerialPort();
         public Form1()
         {
@@ -30,13 +31,30 @@ namespace DLCardProgrammer
             fillBaudRate();
             //Al llamar a esta funcion se carga de forma automatica las formas de envio
             pfillSendMode();
+            //Escribir los nombres de los estudiantes
+            pfillStudentName();
             //Desactivo los demas botones hasta que  no se hace cada proceso
             btnLoadProgram.Enabled = false;
             btnViewCode.Enabled = false;
             btnProgram.Enabled = false;
             cmbTypeProgram.Enabled = false;
         }
-
+        private void pfillStudentName()
+        {
+            string header = "Programador boards De-Lorenzo" + "\r\n" + "Hecho en 2018 por:" + "\r\n";
+            names.Add("Luis Ramirez 1161452");
+            names.Add("Gerson florez 1160975");
+            names.Add("Juan carrillo 1160802");
+            names.Add("Dionel Ropero Torres 1161132");
+            names.Add("Ronald Steven Daza Daza 1161145");
+            names.Add("Angelica maria vega Acevedo 1161052");
+            string text = "";
+            foreach(string name in names)
+            {
+                text += name + "\r\n";
+            }
+            txtName.Text = header+ text;
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
