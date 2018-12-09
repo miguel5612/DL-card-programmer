@@ -177,11 +177,12 @@ namespace DLCardProgrammer
         {
             pbLoad.Value = 0;
             pbLoad.Maximum = 100;
+            __mode = cmbTypeProgram.Text;
             Cursor.Current = Cursors.WaitCursor;
             //minimizo el principal
             this.WindowState = FormWindowState.Minimized;
             //Ventana emergente     
-            Form formularioEmergente = new popUpProgramming(_programa, __mode,__bytes);
+            Form formularioEmergente = new popUpProgramming(_programa, __mode,__bytes, ArduinoPort);
             __mode = cmbTypeProgram.Text;
             formularioEmergente.Show();
             //Ahora la restauro

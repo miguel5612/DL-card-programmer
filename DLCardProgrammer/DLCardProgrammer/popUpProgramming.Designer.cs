@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtError = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,6 +45,8 @@
             // 
             // txtProgram
             // 
+            this.txtProgram.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtProgram.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtProgram.Location = new System.Drawing.Point(77, 62);
             this.txtProgram.Multiline = true;
             this.txtProgram.Name = "txtProgram";
@@ -75,12 +79,30 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "ERROR:";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(164, 458);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(616, 23);
+            this.progressBar1.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(87, 468);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "PROGRESO:";
+            // 
             // popUpProgramming
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(888, 515);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtError);
             this.Controls.Add(this.label1);
@@ -102,5 +124,8 @@
         private System.Windows.Forms.TextBox txtProgram;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtError;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
