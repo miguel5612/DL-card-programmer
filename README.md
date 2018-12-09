@@ -7,8 +7,8 @@ el programa que hemos presentado que ha sido desarrollado en c#.
 
 Como compilar:
 -------------------
-Debes instalar primero (TurboAssemblerGui)[https://sourceforge.net/projects/guitasm8086/] y el programador que se encuentra en el folder "install before".
-1. Abrir el programa (TurboAssemblerGui)[https://sourceforge.net/projects/guitasm8086/]
+Debes instalar primero [TurboAssemblerGui](https://sourceforge.net/projects/guitasm8086/) y el programador que se encuentra en el folder "install before".
+1. Abrir el programa [TurboAssemblerGui](https://sourceforge.net/projects/guitasm8086/).
 2. Escribir el programaen lenguaje ensamblador.
 3. Ejecutar tools/Assemble.
 4. Ejecutar tools/Build.
