@@ -16,9 +16,15 @@ Debes instalar primero [TurboAssemblerGui](https://sourceforge.net/projects/guit
 6. En la consola del turboAssembler aparece la ruta del programa .EXE construido, cargar ese archivo en el DL-Card-Programmer.
 7. Presionar el boton programar.
 
-requisitos:
+Requisitos:
 --------------------
 1. Computador con windows 10 y el software descargado.
+
+Capturas de pantalla
+--------------------
+![Formulario principal](https://raw.githubusercontent.com/miguel5612/DL-card-programmer/master/Ext/Base.PNG)
+![Formulario ver codigo](https://raw.githubusercontent.com/miguel5612/DL-card-programmer/master/Ext/Programming.PNG)
+![Formulario programando tarjeta](https://raw.githubusercontent.com/miguel5612/DL-card-programmer/master/Ext/viewProgram.PNG)
 
 Documentacion:
 --------------------
