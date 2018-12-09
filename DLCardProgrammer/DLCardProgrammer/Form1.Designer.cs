@@ -110,6 +110,7 @@
             this.btnViewCode.TabIndex = 6;
             this.btnViewCode.Text = "Ver el codigo";
             this.btnViewCode.UseVisualStyleBackColor = true;
+            this.btnViewCode.Click += new System.EventHandler(this.btnViewCode_Click);
             // 
             // label3
             // 

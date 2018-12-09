@@ -185,11 +185,25 @@ namespace DLCardProgrammer
             formularioEmergente.Show();
             //Ahora la restauro
             this.WindowState = FormWindowState.Normal;
-
             Cursor.Current = Cursors.Default;
             /*
             
         */
+        }
+
+        private void btnViewCode_Click(object sender, EventArgs e)
+        {
+            pbLoad.Value = 0;
+            pbLoad.Maximum = 100;
+            __mode = cmbTypeProgram.Text;
+            Cursor.Current = Cursors.WaitCursor;
+            //Ventana emergente     
+            Form formularioEmergente = new viewCode(_programa, __mode, __bytes, ArduinoPort);
+            __mode = cmbTypeProgram.Text;
+            formularioEmergente.Show();
+            //Ahora la restauro
+            this.WindowState = FormWindowState.Normal;
+            Cursor.Current = Cursors.Default;
         }
     }
 }
