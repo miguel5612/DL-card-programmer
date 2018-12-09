@@ -43,6 +43,9 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnUpdatePorts = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pbLoad = new System.Windows.Forms.ProgressBar();
+            this.txtNumbytes = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblPort
@@ -142,6 +145,7 @@
             this.btnProgram.TabIndex = 10;
             this.btnProgram.Text = "Programar Tarjeta";
             this.btnProgram.UseVisualStyleBackColor = true;
+            this.btnProgram.Click += new System.EventHandler(this.btnProgram_Click);
             // 
             // label5
             // 
@@ -154,10 +158,10 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(313, 39);
+            this.txtName.Location = new System.Drawing.Point(313, 70);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(246, 134);
+            this.txtName.Size = new System.Drawing.Size(246, 137);
             this.txtName.TabIndex = 12;
             // 
             // btnConnect
@@ -180,12 +184,38 @@
             this.btnUpdatePorts.UseVisualStyleBackColor = true;
             this.btnUpdatePorts.Click += new System.EventHandler(this.btnUpdatePorts_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 182);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "PROGRESO";
+            // 
+            // pbLoad
+            // 
+            this.pbLoad.Location = new System.Drawing.Point(150, 184);
+            this.pbLoad.Name = "pbLoad";
+            this.pbLoad.Size = new System.Drawing.Size(139, 23);
+            this.pbLoad.TabIndex = 16;
+            // 
+            // txtNumbytes
+            // 
+            this.txtNumbytes.Location = new System.Drawing.Point(313, 42);
+            this.txtNumbytes.Name = "txtNumbytes";
+            this.txtNumbytes.Size = new System.Drawing.Size(246, 20);
+            this.txtNumbytes.TabIndex = 17;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ClientSize = new System.Drawing.Size(585, 205);
+            this.ClientSize = new System.Drawing.Size(585, 234);
+            this.Controls.Add(this.txtNumbytes);
+            this.Controls.Add(this.pbLoad);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnUpdatePorts);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.txtName);
@@ -225,6 +255,9 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnUpdatePorts;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ProgressBar pbLoad;
+        private System.Windows.Forms.TextBox txtNumbytes;
     }
 }
 

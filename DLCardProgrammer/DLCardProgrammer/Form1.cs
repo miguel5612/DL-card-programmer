@@ -18,6 +18,7 @@ namespace DLCardProgrammer
     public partial class Form1 : Form
     {
         public string _programa = string.Empty;
+        public string __mode = string.Empty;
         public int __bytes = 0;
         SerialPort ArduinoPort = new SerialPort();
         public Form1()
@@ -131,15 +132,14 @@ namespace DLCardProgrammer
         private void btnLoadProgram_Click(object sender, EventArgs e)
         {
             OpenFileDialog window = new OpenFileDialog();
-            string line = "", text = "";
             if (window.ShowDialog() == DialogResult.OK)
             {
-                string fileStr = "";
                 string location = window.FileName;
                 byte[] file = File.ReadAllBytes(location);
                 _programa = ByteArrayToString(file);
                 _programa = formatStr(_programa, 4, 8);
                 __bytes = _programa.Trim().Replace(" ", "").Replace("\r\n", "").Length;
+                txtNumbytes.Text = __bytes.ToString() + "  bytes readed OK";
             }
         }
 
@@ -171,6 +171,24 @@ namespace DLCardProgrammer
         {
             return Enumerable.Range(0, str.Length / chunkSize)
                 .Select(i => str.Substring(i * chunkSize, chunkSize));
+        }
+
+        private void btnProgram_Click(object sender, EventArgs e)
+        {
+            pbLoad.Value = 0;
+            pbLoad.Maximum = 100;
+            Cursor.Current = Cursors.WaitCursor;
+            //minimizo el principal
+            this.WindowState = FormWindowState.Minimized;
+            //Ventana emergente     
+            Form formularioEmergente = new popUpProgramming(_programa, __mode,__bytes);
+            __mode = cmbTypeProgram.Text;
+            formularioEmergente.Show();
+            //Ahora la restauro
+            this.WindowState = FormWindowState.Normal;
+            /*
+            
+        */
         }
     }
 }
