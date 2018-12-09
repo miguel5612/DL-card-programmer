@@ -16,9 +16,10 @@ namespace DLCardProgrammer
 {
     public partial class viewCode : Form
     {
-        public string programa, mode;
+        public string programa, mode, program2Send;
         public int numBytes = 0;
         public SerialPort sendPort;
+
         public viewCode(string _programa, string __mode, int __bytes, SerialPort ArduinoPort)
         {
             InitializeComponent();
@@ -64,19 +65,25 @@ namespace DLCardProgrammer
 
         private void cmdSendMode_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pFillTexttoSend();
+            txtToSend.Text = program2Send;
+        }
+        private void pFillTexttoSend()
+        {
             mode = cmdSendMode.Text;
             string text = programa;
+            program2Send = "";
             if (checkBox1.Checked)
             {
                 var sendText = "";
                 char sep = '\r';
                 if (cmdSendMode.Text.Contains("HEX"))
                 {
-                    txtToSend.Text = numBytes.ToString("X") + "\r\n";
+                    program2Send = numBytes.ToString("X") + "\r\n";
                 }
                 else
                 {
-                    txtToSend.Text = numBytes.ToString() + "\r\n";
+                    program2Send = numBytes.ToString() + "\r\n";
                 }
                 if (mode == "(HEX) Byte a Byte")
                 {
@@ -86,7 +93,7 @@ namespace DLCardProgrammer
                         string character = text.Substring(b, 1);
                         sendText += character + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(DEC) Byte a Byte")
                 {
@@ -97,7 +104,7 @@ namespace DLCardProgrammer
                         int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
                         sendText += caracter + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(HEX) 2 Bytes a 2 Bytes)")
                 {
@@ -107,7 +114,7 @@ namespace DLCardProgrammer
                         string character = text.Substring(b, 2);
                         sendText += character + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(DEC) 2 Bytes a 2 Bytes)")
                 {
@@ -118,7 +125,7 @@ namespace DLCardProgrammer
                         int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
                         sendText += caracter + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(HEX) 4 Bytes a 4 Bytes")
                 {
@@ -128,7 +135,7 @@ namespace DLCardProgrammer
                         string character = text.Substring(b, 4);
                         sendText += character + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(DEC) 4 Bytes a 4 Bytes")
                 {
@@ -139,7 +146,7 @@ namespace DLCardProgrammer
                         int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
                         sendText += caracter + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(HEX) 6 Bytes a 6 Bytes")
                 {
@@ -149,7 +156,7 @@ namespace DLCardProgrammer
                         string character = text.Substring(b, 6);
                         sendText += character + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(DEC) 6 Bytes a 6 Bytes")
                 {
@@ -160,7 +167,7 @@ namespace DLCardProgrammer
                         int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
                         sendText += caracter + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(HEX) 8 Bytes a 8 Bytes")
                 {
@@ -170,7 +177,7 @@ namespace DLCardProgrammer
                         string character = text.Substring(b, 8);
                         sendText += character + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(DEC) 8 Bytes a 8 Bytes")
                 {
@@ -181,7 +188,7 @@ namespace DLCardProgrammer
                         int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
                         sendText += caracter + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(HEX) Line to Line (8-Bit)")
                 {
@@ -200,7 +207,7 @@ namespace DLCardProgrammer
                             }
                             sendText += lineInt + "\r\n";
                         }
-                        txtToSend.Text += sendText;
+                        program2Send += sendText;
                     }
                 }
                 else if (mode == "(DEC) Line to Line (8-Bit)")
@@ -220,7 +227,7 @@ namespace DLCardProgrammer
                             }
                             sendText += lineInt + "\r\n";
                         }
-                        txtToSend.Text += sendText;
+                        program2Send += sendText;
                     }
                 }
                 else if (mode == "(HEX) Line to Line (16-Bit)")
@@ -240,7 +247,7 @@ namespace DLCardProgrammer
                             }
                             sendText += lineInt + "\r\n";
                         }
-                        txtToSend.Text += sendText;
+                        program2Send += sendText;
                     }
                 }
                 else if (mode == "(DEC) Line to Line (16-Bit)")
@@ -261,7 +268,7 @@ namespace DLCardProgrammer
                             sendText += lineInt + "\r\n";
                         }
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(DEC) Line to Line (32-Bit)")
                 {
@@ -278,7 +285,7 @@ namespace DLCardProgrammer
                         }
                         sendText += lineInt + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
                 else if (mode == "(HEX) Line to Line (32-Bit)")
                 {
@@ -290,7 +297,7 @@ namespace DLCardProgrammer
                         string lineF = line.Replace("\r", "");
                         sendText += lineF + "\r\n";
                     }
-                    txtToSend.Text += sendText;
+                    program2Send += sendText;
                 }
             }
         }
@@ -300,7 +307,7 @@ namespace DLCardProgrammer
         {
             Cursor.Current = Cursors.WaitCursor;
             //Ventana emergente     
-            Form formularioEmergente = new viewCode(programa, mode, numBytes, sendPort);
+            Form formularioEmergente = new popUpProgramming(programa, mode, numBytes,checkBox1.Checked, sendPort);
             formularioEmergente.Show();
             //Ahora la restauro
             this.WindowState = FormWindowState.Normal;

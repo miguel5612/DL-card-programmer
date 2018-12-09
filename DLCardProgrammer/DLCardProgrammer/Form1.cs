@@ -180,7 +180,7 @@ namespace DLCardProgrammer
             __mode = cmbTypeProgram.Text;
             Cursor.Current = Cursors.WaitCursor;
             //Ventana emergente     
-            Form formularioEmergente = new popUpProgramming(_programa, __mode,__bytes, ArduinoPort);
+            Form formularioEmergente = new popUpProgramming(_programa, __mode,__bytes,true, ArduinoPort);
             __mode = cmbTypeProgram.Text;
             formularioEmergente.Show();
             //Ahora la restauro
@@ -204,6 +204,11 @@ namespace DLCardProgrammer
             //Ahora la restauro
             this.WindowState = FormWindowState.Normal;
             Cursor.Current = Cursors.Default;
+        }
+
+        private void cmbTypeProgram_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

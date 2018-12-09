@@ -128,6 +128,7 @@
             this.cmbTypeProgram.Name = "cmbTypeProgram";
             this.cmbTypeProgram.Size = new System.Drawing.Size(139, 21);
             this.cmbTypeProgram.TabIndex = 8;
+            this.cmbTypeProgram.SelectedIndexChanged += new System.EventHandler(this.cmbTypeProgram_SelectedIndexChanged);
             // 
             // label4
             // 
