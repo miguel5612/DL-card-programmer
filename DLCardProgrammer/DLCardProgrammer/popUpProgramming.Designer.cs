@@ -28,15 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.PBProgress = new System.Windows.Forms.ProgressBar();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.txtProgram = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtError = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // PBProgress
+            // 
+            this.PBProgress.Location = new System.Drawing.Point(164, 458);
+            this.PBProgress.Name = "PBProgress";
+            this.PBProgress.Size = new System.Drawing.Size(616, 23);
+            this.PBProgress.TabIndex = 4;
             // 
             // fileSystemWatcher1
             // 
@@ -79,13 +87,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "ERROR:";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(164, 458);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(616, 23);
-            this.progressBar1.TabIndex = 4;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -95,14 +96,25 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "PROGRESO:";
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(164, 487);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(126, 23);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "btnExit";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // popUpProgramming
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(888, 515);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.PBProgress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtError);
             this.Controls.Add(this.label1);
@@ -126,6 +138,7 @@
         private System.Windows.Forms.TextBox txtError;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar PBProgress;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

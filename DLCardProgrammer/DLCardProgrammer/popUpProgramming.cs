@@ -19,6 +19,7 @@ namespace DLCardProgrammer
         public SerialPort sendPort;
         public popUpProgramming(string _programa,string  __mode,int __bytes, SerialPort ArduinoPort)
         {
+            InitializeComponent();
             programa = _programa;
             mode = __mode;
             numBytes = __bytes;
@@ -26,8 +27,11 @@ namespace DLCardProgrammer
             backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
             backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
             backgroundWorker1.WorkerReportsProgress = true;
+            //Tamaño normal
             backgroundWorker1.RunWorkerAsync() ;
             sendPort = ArduinoPort;
+            PBProgress.Minimum = 0;
+            PBProgress.Maximum = 100;
         }
         private void popUpProgramming_Load(object sender, EventArgs e)
         {
@@ -35,19 +39,35 @@ namespace DLCardProgrammer
         }
         private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            progressBar1.Value = e.ProgressPercentage;
+            var progress = e.ProgressPercentage>0?(e.ProgressPercentage * 100 / numBytes):0;
+            PBProgress.Value = progress;
             txtProgram.Text += e.UserState;
+            txtProgram.SelectionStart = txtProgram.Text.Length;
             txtProgram.ScrollToCaret();
+            if (progress > 98)
+            {
+                Task.Delay(TimeSpan.FromSeconds(3)).Wait();
+                //Close popup
+                this.Close();
+            }
         }
         private void txtProgram_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.CancelAsync();
+            //Close popup
+            this.Close();
+        }
+
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
+                Cursor.Current = Cursors.Default;
                 if (programa != "")
                 {
                     var txt = "";
