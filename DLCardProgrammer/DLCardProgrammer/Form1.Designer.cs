@@ -46,6 +46,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pbLoad = new System.Windows.Forms.ProgressBar();
             this.txtNumbytes = new System.Windows.Forms.TextBox();
+            this.chkSendWidth = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblPort
@@ -163,7 +164,7 @@
             this.txtName.Location = new System.Drawing.Point(313, 70);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(246, 137);
+            this.txtName.Size = new System.Drawing.Size(318, 137);
             this.txtName.TabIndex = 12;
             // 
             // btnConnect
@@ -206,15 +207,29 @@
             // 
             this.txtNumbytes.Location = new System.Drawing.Point(313, 42);
             this.txtNumbytes.Name = "txtNumbytes";
-            this.txtNumbytes.Size = new System.Drawing.Size(246, 20);
+            this.txtNumbytes.Size = new System.Drawing.Size(318, 20);
             this.txtNumbytes.TabIndex = 17;
+            // 
+            // chkSendWidth
+            // 
+            this.chkSendWidth.AutoSize = true;
+            this.chkSendWidth.Checked = true;
+            this.chkSendWidth.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSendWidth.Location = new System.Drawing.Point(493, 15);
+            this.chkSendWidth.Name = "chkSendWidth";
+            this.chkSendWidth.Size = new System.Drawing.Size(138, 17);
+            this.chkSendWidth.TabIndex = 18;
+            this.chkSendWidth.Text = "Enviar tamaño del .EXE";
+            this.chkSendWidth.UseVisualStyleBackColor = true;
+            this.chkSendWidth.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ClientSize = new System.Drawing.Size(585, 234);
+            this.ClientSize = new System.Drawing.Size(703, 234);
+            this.Controls.Add(this.chkSendWidth);
             this.Controls.Add(this.txtNumbytes);
             this.Controls.Add(this.pbLoad);
             this.Controls.Add(this.label6);
@@ -260,6 +275,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ProgressBar pbLoad;
         private System.Windows.Forms.TextBox txtNumbytes;
+        private System.Windows.Forms.CheckBox chkSendWidth;
     }
 }
 

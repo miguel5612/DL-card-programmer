@@ -42,6 +42,7 @@
             this.txtOriginal.Location = new System.Drawing.Point(48, 94);
             this.txtOriginal.Multiline = true;
             this.txtOriginal.Name = "txtOriginal";
+            this.txtOriginal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtOriginal.Size = new System.Drawing.Size(348, 344);
             this.txtOriginal.TabIndex = 0;
             this.txtOriginal.TextChanged += new System.EventHandler(this.txtOriginal_TextChanged);
@@ -51,6 +52,7 @@
             this.txtToSend.Location = new System.Drawing.Point(422, 94);
             this.txtToSend.Multiline = true;
             this.txtToSend.Name = "txtToSend";
+            this.txtToSend.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtToSend.Size = new System.Drawing.Size(297, 344);
             this.txtToSend.TabIndex = 1;
             // 

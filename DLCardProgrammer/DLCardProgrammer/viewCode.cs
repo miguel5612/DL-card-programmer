@@ -20,13 +20,14 @@ namespace DLCardProgrammer
         public int numBytes = 0;
         public SerialPort sendPort;
 
-        public viewCode(string _programa, string __mode, int __bytes, SerialPort ArduinoPort)
+        public viewCode(string _programa, string __mode, int __bytes,bool chkSendWith, SerialPort ArduinoPort)
         {
             InitializeComponent();
             programa = _programa;
             mode = __mode;
             numBytes = __bytes;
             sendPort = ArduinoPort;
+            checkBox1.Checked = chkSendWith;
             pfillSendMode();
             pfillexe();
         }
@@ -307,7 +308,7 @@ namespace DLCardProgrammer
         {
             Cursor.Current = Cursors.WaitCursor;
             //Ventana emergente     
-            Form formularioEmergente = new popUpProgramming(programa, mode, numBytes,checkBox1.Checked, sendPort);
+            Form formularioEmergente = new popUpProgramming(mode, numBytes,checkBox1.Checked,txtToSend.Text, sendPort);
             formularioEmergente.Show();
             //Ahora la restauro
             this.WindowState = FormWindowState.Normal;

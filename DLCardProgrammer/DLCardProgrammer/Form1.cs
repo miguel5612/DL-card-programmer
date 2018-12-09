@@ -17,7 +17,7 @@ namespace DLCardProgrammer
 {
     public partial class Form1 : Form
     {
-        public string _programa = string.Empty;
+        public string _programa = string.Empty, program2Send;
         public string __mode = string.Empty;
         public int __bytes = 0;
         SerialPort ArduinoPort = new SerialPort();
@@ -30,6 +30,11 @@ namespace DLCardProgrammer
             fillBaudRate();
             //Al llamar a esta funcion se carga de forma automatica las formas de envio
             pfillSendMode();
+            //Desactivo los demas botones hasta que  no se hace cada proceso
+            btnLoadProgram.Enabled = false;
+            btnViewCode.Enabled = false;
+            btnProgram.Enabled = false;
+            cmbTypeProgram.Enabled = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -109,6 +114,10 @@ namespace DLCardProgrammer
                         ArduinoPort.Open();
                         btnConnect.Text = "Desconectar";
                         btnConnect.Enabled = true;
+                        btnConnect.Enabled = true;
+                        btnLoadProgram.Enabled = true;
+                        btnViewCode.Enabled = false;
+                        btnProgram.Enabled = false;
                     }
                     catch (Exception)
                     {
@@ -120,7 +129,6 @@ namespace DLCardProgrammer
                     //Desconectar
                     ArduinoPort.Close();
                     btnConnect.Text = "Conectar";
-                    btnConnect.Enabled = true;
                 }
             }
             catch (Exception)
@@ -140,6 +148,9 @@ namespace DLCardProgrammer
                 _programa = formatStr(_programa, 4, 8);
                 __bytes = _programa.Trim().Replace(" ", "").Replace("\r\n", "").Length;
                 txtNumbytes.Text = __bytes.ToString() + "  bytes readed OK";
+                btnViewCode.Enabled = true;
+                btnProgram.Enabled = true;
+                cmbTypeProgram.Enabled = true;
             }
         }
 
@@ -177,10 +188,11 @@ namespace DLCardProgrammer
         {
             pbLoad.Value = 0;
             pbLoad.Maximum = 100;
+            pFillTexttoSend();
             __mode = cmbTypeProgram.Text;
             Cursor.Current = Cursors.WaitCursor;
             //Ventana emergente     
-            Form formularioEmergente = new popUpProgramming(_programa, __mode,__bytes,true, ArduinoPort);
+            Form formularioEmergente = new popUpProgramming( __mode,__bytes,chkSendWidth.Checked,program2Send, ArduinoPort);
             __mode = cmbTypeProgram.Text;
             formularioEmergente.Show();
             //Ahora la restauro
@@ -198,7 +210,7 @@ namespace DLCardProgrammer
             __mode = cmbTypeProgram.Text;
             Cursor.Current = Cursors.WaitCursor;
             //Ventana emergente     
-            Form formularioEmergente = new viewCode(_programa, __mode, __bytes, ArduinoPort);
+            Form formularioEmergente = new viewCode(_programa, __mode, __bytes, chkSendWidth.Checked, ArduinoPort);
             __mode = cmbTypeProgram.Text;
             formularioEmergente.Show();
             //Ahora la restauro
@@ -208,7 +220,247 @@ namespace DLCardProgrammer
 
         private void cmbTypeProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            pFillTexttoSend();
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            pFillTexttoSend();
+        }
+        private void pFillTexttoSend()
+        {
+            string mode = cmbTypeProgram.Text;
+            string text = _programa;
+            int numBytes = __bytes;
+            program2Send = "";
+            if (chkSendWidth.Checked)
+            {
+                var sendText = "";
+                char sep = '\r';
+                if (mode.Contains("HEX"))
+                {
+                    program2Send = __bytes.ToString("X") + "\r\n";
+                }
+                else
+                {
+                    program2Send = __bytes.ToString() + "\r\n";
+                }
+                if (mode == "(HEX) Byte a Byte")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 1; b++)
+                    {
+                        string character = text.Substring(b, 1);
+                        sendText += character + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(DEC) Byte a Byte")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 1; b++)
+                    {
+                        string character = text.Substring(b, 1);
+                        int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
+                        sendText += caracter + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(HEX) 2 Bytes a 2 Bytes)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 2; b += 2)
+                    {
+                        string character = text.Substring(b, 2);
+                        sendText += character + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(DEC) 2 Bytes a 2 Bytes)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 2; b += 2)
+                    {
+                        string character = text.Substring(b, 2);
+                        int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
+                        sendText += caracter + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(HEX) 4 Bytes a 4 Bytes")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 4; b += 4)
+                    {
+                        string character = text.Substring(b, 4);
+                        sendText += character + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(DEC) 4 Bytes a 4 Bytes")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 4; b += 4)
+                    {
+                        string character = text.Substring(b, 4);
+                        int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
+                        sendText += caracter + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(HEX) 6 Bytes a 6 Bytes")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 6; b += 6)
+                    {
+                        string character = text.Substring(b, 6);
+                        sendText += character + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(DEC) 6 Bytes a 6 Bytes")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 6; b += 6)
+                    {
+                        string character = text.Substring(b, 6);
+                        int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
+                        sendText += caracter + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(HEX) 8 Bytes a 8 Bytes")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 8; b += 8)
+                    {
+                        string character = text.Substring(b, 8);
+                        sendText += character + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(DEC) 8 Bytes a 8 Bytes")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\r\n", ""); //remove whitespaces
+                    for (int b = 0; b <= numBytes - 8; b += 8)
+                    {
+                        string character = text.Substring(b, 8);
+                        int caracter = int.Parse(character, System.Globalization.NumberStyles.HexNumber);
+                        sendText += caracter + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(HEX) Line to Line (8-Bit)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\n", ""); //remove whitespaces
+                    string[] lines = text.Split(sep);
+                    foreach (string line in lines)
+                    {
+                        string lineF = line.Replace("\r", "");
+                        for (int j = 0; j <= lineF.Length - 8; j += lineF.Length / 4)
+                        {
+                            string line8 = lineF.Substring(j, 8);
+                            string lineInt = "";
+                            for (int i = 0; i <= line8.Length - 1; i++)
+                            {
+                                lineInt += line8.Substring(i, 1);
+                            }
+                            sendText += lineInt + "\r\n";
+                        }
+                        program2Send += sendText;
+                    }
+                }
+                else if (mode == "(DEC) Line to Line (8-Bit)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\n", ""); //remove whitespaces
+                    string[] lines = text.Split(sep);
+                    foreach (string line in lines)
+                    {
+                        string lineF = line.Replace("\r", "");
+                        for (int j = 0; j <= lineF.Length - 8; j += lineF.Length / 4)
+                        {
+                            string line8 = lineF.Substring(j, 8);
+                            string lineInt = "";
+                            for (int i = 0; i <= line8.Length - 1; i++)
+                            {
+                                lineInt += int.Parse(line8.Substring(i, 1), System.Globalization.NumberStyles.HexNumber);
+                            }
+                            sendText += lineInt + "\r\n";
+                        }
+                        program2Send += sendText;
+                    }
+                }
+                else if (mode == "(HEX) Line to Line (16-Bit)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\n", ""); //remove whitespaces
+                    string[] lines = text.Split(sep);
+                    foreach (string line in lines)
+                    {
+                        string lineF = line.Replace("\r", "");
+                        for (int j = 0; j <= lineF.Length - 16; j += lineF.Length / 2)
+                        {
+                            string line16 = lineF.Substring(j, 16);
+                            string lineInt = "";
+                            for (int i = 0; i <= line16.Length - 1; i++)
+                            {
+                                lineInt += line16.Substring(i, 1);
+                            }
+                            sendText += lineInt + "\r\n";
+                        }
+                        program2Send += sendText;
+                    }
+                }
+                else if (mode == "(DEC) Line to Line (16-Bit)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\n", ""); //remove whitespaces
+                    string[] lines = text.Split(sep);
+                    foreach (string line in lines)
+                    {
+                        string lineF = line.Replace("\r", "");
+                        for (int j = 0; j <= lineF.Length - 16; j += lineF.Length / 2)
+                        {
+                            string line16 = lineF.Substring(j, 16);
+                            string lineInt = "";
+                            for (int i = 0; i <= line16.Length - 1; i++)
+                            {
+                                lineInt += int.Parse(line16.Substring(i, 1), System.Globalization.NumberStyles.HexNumber);
+                            }
+                            sendText += lineInt + "\r\n";
+                        }
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(DEC) Line to Line (32-Bit)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\n", ""); //remove whitespaces
+                    string[] lines = text.Split(sep);
+                    int j = 0;
+                    foreach (string line in lines)
+                    {
+                        string lineF = line.Replace("\r", "");
+                        string lineInt = "";
+                        for (int i = 0; i <= lineF.Length - 1; i++)
+                        {
+                            lineInt += int.Parse(lineF.Substring(i, 1), System.Globalization.NumberStyles.HexNumber);
+                        }
+                        sendText += lineInt + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+                else if (mode == "(HEX) Line to Line (32-Bit)")
+                {
+                    text = text.Trim().Replace(" ", "").Replace("\n", ""); //remove whitespaces
+                    string[] lines = text.Split(sep);
+                    int j = 0;
+                    foreach (string line in lines)
+                    {
+                        string lineF = line.Replace("\r", "");
+                        sendText += lineF + "\r\n";
+                    }
+                    program2Send += sendText;
+                }
+            }
+        }
+
     }
 }
