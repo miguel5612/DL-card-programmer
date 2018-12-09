@@ -7,18 +7,14 @@ el programa que hemos presentado que ha sido desarrollado en c#.
 
 Como compilar:
 -------------------
-Una vez instalado E24 IDE debes mirar que en la carpeta existe un programa llamado
-MASM.EXE y LINK.EXE (Tambien estan en el folder E24).
-1. Copiar el folder E24 a c:// (Windows).
-2. Abrir [Dos Box](https://www.dosbox.com/).
-3. Montar [c://E24](https://www.dosbox.com/wiki/MOUNT).
-4. Entrar al drive montado (Ejemplo: D:).
-5. Ejecutar MASM (Escribes en la consola MASM y presionas enter).
-6. Compilar (Escribes 5 veces el nombre del programa a compilar (Debe ser un archivo .asm en c://E24)).
-7. Generar el .exe (Escribe LINK NombrePrograma; y presionas enter).
-8. Abrir el programa presentado aqui (Debes instalar primero el .zip).
-9. Seleccionar el puerto, la velocidad y conectar.
-10. Presionar programar.
+Debes instalar primero (TurboAssemblerGui)[https://sourceforge.net/projects/guitasm8086/] y el programador que se encuentra en el folder "install before".
+1. Abrir el programa (TurboAssemblerGui)[https://sourceforge.net/projects/guitasm8086/]
+2. Escribir el programaen lenguaje ensamblador.
+3. Ejecutar tools/Assemble.
+4. Ejecutar tools/Build.
+5. Abrir el programa DL-Card Programmer y conectarse al puerto serie.
+6. En la consola del turboAssembler aparece la ruta del programa .EXE construido, cargar ese archivo en el DL-Card-Programmer.
+7. Presionar el boton programar.
 
 requisitos:
 --------------------
@@ -26,8 +22,7 @@ requisitos:
 
 Documentacion:
 --------------------
-+ DOS Box --> https://www.dosbox.com/
-+ DE Lorenzo E24 --> https://es.scribd.com/document/208791521/Micro-Proce-Sad-Or
++ TurboAssemblerGui  --> https://sourceforge.net/projects/guitasm8086/
 
 Contacto:
 --------------------
